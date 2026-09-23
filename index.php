@@ -1,60 +1,57 @@
 <?php
  
 class box {
-    use HasColor, HasSmell;
-    public $width;
-    public $height;
-    public $length;
+ 
+    public function __construct(public int $width, private int $height, protected int $length) {
+ 
+        var_dump('Box was created');
+    }
  
     public function volume() {
         return $this->width * $this->height * $this->length;
     }
  
-    public function setHeight(int $height) {
-        if ($height < 0) {
-            $this->height = 0;
-        } else {
-            $this->height = $height;
-        }
-    }
-    public function getHeight(int $height) {
-        return $this->height;
+    public function __set($name, $value) {
+        var_dump($name, $value);
     }
  
-        public function test2() {
-        $this->length = 10;
-        var_dump($this->length);
+    public function __get($name) {
+        var_dump($name);
+        return 'Some value';
+    }
+ 
+    public function __call($name, $args) {
+        var_dump($name, $args);
+    }
+ 
+    public function __invoke($a, $b) {
+        var_dump($a, $b);
+    }
+ 
+    public function __toString() {
+        return 'Im a booblick box';
+    }
+ 
+    public function __destruct() {
+        var_dump('Box was destroyed(Boom)');
     }
 }
  
-class MetalBox extends box {
-    use HasColor;
-    public $weightPerUnit;
-    public function mass() {
-        return $this->weightPerUnit * $this->volume();
-    }
-        public function test2() {
-        $this->height = 10;
-        var_dump($this->height);
-    }
+function test() {
+    $box2 = new box(1, 2, 3);
+}
+test();
+ 
+for($i = 0; $i < 10; $i++) {
+    $box2 = new box(1, 2, 3);
 }
  
-trait HasColor {
-    public $color;
-    public function setColor(string $color) {
-        $this->color = $color;
-    }
-}
+$box1 = new box(1, 2, 3);
+$box1->hello = 'lol';
+var_dump($box1->YOLO);
+$box1->cool(1, 'hbchdi', 52);
+$box1(1, 'world');
  
-trait HasSmell {
-    public $smell;
-    public function setSmell(string $smell) {
-        $this->smell = $smell;
-    }
-}
- 
-$box = new box();
-var_dump($box);
-$metall = new MetalBox();
-var_dump($metall);
-?>
+$box1 = 1;
+var_dump($box1);
+echo $box1;
