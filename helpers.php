@@ -7,8 +7,10 @@ function dump(...$vars)
     echo '</pre>';
 }
 
-function view($viewName, $variables) {
-    extract($variables);
+function view($viewName, $variables = []) {
+    if (!empty($variables)) {
+        extract($variables);
+    }
     $viewPath = __DIR__ . "/views/{$viewName}.php";
     include $viewPath;
 }
