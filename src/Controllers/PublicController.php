@@ -31,7 +31,7 @@ class PublicController {
                 'body' => 'Some World body 4',
             ],
         ];
-        include __DIR__ . '/../views/index.php';
+        include __DIR__ . '/../../views/index.php';
     }
 
     public function us() {
@@ -62,6 +62,39 @@ class PublicController {
                 'body' => 'Some U.S body 4',
             ],
         ];
-        include __DIR__ . '/../views/index.php';
+        include __DIR__ . '/../../views/us.php';
+    }
+
+    public function tech() {
+    $title = 'Technology';
+
+    $posts = [
+        [
+            'title' => 'AI Finally Learned How to Make Coffee',
+            'date' => 'September 7, 2026',
+            'author' => 'Bublik',
+            'body' => 'Artificial intelligence can now make coffee, but it still forgets to add sugar.',
+        ],
+        [
+            'title' => 'Old Phones Are Becoming Cool Again',
+            'date' => 'September 67, 2026',
+            'author' => 'Mihhail',
+            'body' => 'People are buying old phones again because their batteries somehow last longer than modern ones.',
+        ],
+        [
+            'title' => 'Apple Unveils iPhone 67 Pro Ultra Mega Max Plus 5G WiFi Bluetooth Skibidi Toilet Edition That Reads Your Mind, Steals Your Money and Calls You Bro',
+            'date' => 'September 25, 2050',
+            'author' => 'Valera',
+            'body' => 'The new iPhone has 67 cameras, no charging port, costs approximately one kidney and a soul.',
+        ],
+        [
+            'title' => 'Web Developers Discover Sleep',
+            'date' => 'September 2, 3000',
+            'author' => 'Danik',
+            'body' => 'A new study shows that web developers can actually sleep after fixing all CSS problems.',
+        ],
+    ];
+
+    include __DIR__ . '/../../views/tech.php';
     }
 }
