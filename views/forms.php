@@ -3,7 +3,7 @@
     <?php if (isset($_GET['name']) || isset($_GET['age'])): ?>
     <h1>Hello <?= $_GET['name'] ?? 'there' ?>! You are <?= $_GET['age'] ?? 'unknown' ?> years old.</h1>
     <?php endif; ?>
-<form action="/answer" method="POST">
+<form action="/forms" method="POST">
     <label for="name">Name:</label>
     <input name="name" type="text" id="name" placeholder="Enter your name">
     <label for="age">Age:</label>
