@@ -16,81 +16,28 @@ spl_autoload_register(function ($class) {
     require_once __DIR__ . "/src/$class.php";
 });
 
-use App\controllers\PublicController as PC;
+use App\Router;
 
-$router = new Router();
-$db = new DB();
-$controller = new PC();
-$controller = new PC();
-$controller = new PC();
-$controller = new PC();
-$controller = new PC();
-dump($router);
-dump($db);
-dump($publicController);
+$router = new Router($_SERVER['REQUEST_URI']);
 
+$action = $router->match();
 
-// switch ($_SERVER['REQUEST_URI']) {
-//     case '/':
-//         $title = 'World';
-//         $posts = [
-//             [
-//                 'title' => 'Some World title 1',
-//                 'date' => 'January 1, 2021',
-//                 'author' => 'Pets',
-//                 'body' => 'Some World body 1',
-//             ],
-//             [
-//                 'title' => 'Some World title 2',
-//                 'date' => 'January 4, 2021',
-//                 'author' => 'Jaanus',
-//                 'body' => 'Some World body 2',
-//             ],
-//             [
-//                 'title' => 'Some World title 3',
-//                 'date' => 'January 6, 2021',
-//                 'author' => 'Tseburaska',
-//                 'body' => 'Some World body 3',
-//             ],
-//             [
-//                 'title' => 'Some World title 4',
-//                 'date' => 'January 8, 2021',
-//                 'author' => 'Gena',
-//                 'body' => 'Some World body 4',
-//             ],
-//         ];
-//         include __DIR__ . '/../views/index.php';
-//         break;
+if ($action) {
+    $action();
+} else {
+    http_response_code(404);
+    echo "404 - Page Not Found";
+}
 
-//     case '/us':
-//         $posts = [
-//             [
-//                 'title' => 'Some U.S title 1',
-//                 'date' => 'January 1, 2021',
-//                 'author' => 'Pets',
-//                 'body' => 'Some U.S body 1',
-//             ],
-//             [
-//                 'title' => 'Some U.S title 2',
-//                 'date' => 'January 4, 2021',
-//                 'author' => 'Jaanus',
-//                 'body' => 'Some U.S body 2',
-//             ],
-//             [
-//                 'title' => 'Some U.S title 3',
-//                 'date' => 'January 6, 2021',
-//                 'author' => 'Tseburaska',
-//                 'body' => 'Some U.S body 3',
-//             ],
-//             [
-//                 'title' => 'Some U.S title 4',
-//                 'date' => 'January 8, 2021',
-//                 'author' => 'Gena',
-//                 'body' => 'Some U.S body 4',
-//             ],
-//         ];
-//         include __DIR__ . '/../views/us.php';
-//         break;
+require __DIR__ . '/Routes.php';
+
+$router = new Router($_SERVER['REQUEST_URI']);
+$match = $router->match();
+if ($match) {
+    call_user_func($match['action']);
+} else {
+    echo 404;
+}
 
 //     default:
 //         echo 404;
