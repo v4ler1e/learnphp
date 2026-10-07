@@ -1,7 +1,7 @@
 <?php
-
+ 
 namespace App\Controllers;
-
+ 
 class PublicController {
     public function index() {
         $title = 'World';
@@ -33,7 +33,13 @@ class PublicController {
         ];
         view('index', compact('title', 'posts'));
     }
-
+    public function forms() {
+        view('forms');
+    }
+    
+    public function answer() {
+        dump($_GET, $_POST);
+    }
     public function us() {
         $title = 'U.S';
         $posts = [
@@ -62,11 +68,12 @@ class PublicController {
                 'body' => 'Some U.S body 4',
             ],
         ];
-        view('us', compact('posts'));
+        view('us', compact('title', 'posts'));
     }
-
     public function tech() {
     $title = 'Technology';
+
+    
 
         $posts = [
         [
@@ -94,16 +101,9 @@ class PublicController {
             'body' => 'A new study shows that web developers can actually sleep after fixing all CSS problems.',
         ],
     ];
+ 
 
+    include __DIR__ . '/../../views/tech.php';
+}
 
-        view('tech', compact('posts'));
-    }
-    
-    public function forms() {
-        view('forms');
-    }
-
-    public function answer() {
-        dump($_GET, $_POST);
-    }
 }

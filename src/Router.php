@@ -2,30 +2,33 @@
 
 namespace App;
 
-class Router {
+class Router
+{
     private static $routes = [];
 
-    public static function addRoute($path, $action) {
-        self::$routes[]= [
-            'path' => $path,
-            'action' => $action
-        ];
+    public static function addRoute(string $method, string $path, callable|array $action)
+    {
+        self::$routes[] = new Route($method, $path, $action);
     }
 
-    public static function getRoutes() {
+    public static function getRoutes()
+    {
         return self::$routes;
     }
 
-    public function __construct(private $path) {
-        $this->path = parse_url($this->path, PHP_URL_PATH);
+    public function __construct(private $path, private $method)
+    {
+        $this->path = parse_url($path, PHP_URL_PATH);
     }
 
-    public function match() {
+    public function match()
+    {
         foreach (self::$routes as $route) {
-            if ($route['path'] === $this->path) {
+            if ($route->getPath() === $this->path && $route->getMethod() === $this->method) {
                 return $route;
             }
         }
+
         return false;
     }
 }
