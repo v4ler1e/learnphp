@@ -1,14 +1,5 @@
 <?php
 
-// if(isset($title)) {
-//   echo $title;
-// } else {
-//   echo 'Default title';
-// }
-
-// echo isset($title) ? $title : 'Default title';
-// echo $title ?? 'Default title';
-
 $posts = [
   [
    'title' => 'Some U.S title 1',
