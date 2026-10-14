@@ -1,45 +1,34 @@
 <?php
- 
+
 namespace App\Controllers;
- 
+
+use Exception;
+use PDO;
+use PDOException;
+
 class PublicController {
     public function index() {
+
+        $servername = "localhost:33061";
+        $username = "root";
+        $password = "example";
+        $dbname = "learnphp";
+
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "Connected successfully";
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+
+
         $title = 'World';
-        $posts = [
-            [
-                'title' => 'Some World title 1',
-                'date' => 'January 1, 2021',
-                'author' => 'Pets',
-                'body' => 'Some World body 1',
-            ],
-            [
-                'title' => 'Some World title 2',
-                'date' => 'January 4, 2021',
-                'author' => 'Jaanus',
-                'body' => 'Some World body 2',
-            ],
-            [
-                'title' => 'Some World title 3',
-                'date' => 'January 6, 2021',
-                'author' => 'Tseburaska',
-                'body' => 'Some World body 3',
-            ],
-            [
-                'title' => 'Some World title 4',
-                'date' => 'January 8, 2021',
-                'author' => 'Gena',
-                'body' => 'Some World body 4',
-            ],
-        ];
         view('index', compact('title', 'posts'));
     }
-    public function forms() {
-        view('forms');
-    }
-    
-    public function answer() {
-        dump($_GET, $_POST);
-    }
+
     public function us() {
         $title = 'U.S';
         $posts = [
@@ -68,42 +57,47 @@ class PublicController {
                 'body' => 'Some U.S body 4',
             ],
         ];
-        view('us', compact('title', 'posts'));
+        view('us', compact('posts'));
     }
+
     public function tech() {
     $title = 'Technology';
 
-    
-
-        $posts = [
+    $posts = [
         [
-            'title' => 'AI Finally Learned How to Make Coffee',
-            'date' => 'September 7, 2026',
-            'author' => 'Bublik',
-            'body' => 'Artificial intelligence can now make coffee, but it still forgets to add sugar.',
+            'title' => 'African Intelligence Is Changing Technology',
+            'date' => 'October 67, 2026',
+            'author' => 'Misha',
+            'body' => 'African intelligence is becoming more popular and is used in many modern applications.',
         ],
         [
-            'title' => 'Old Phones Are Becoming Cool Again',
-            'date' => 'September 67, 2026',
-            'author' => 'Mihhail',
-            'body' => 'People are buying old phones again because their batteries somehow last longer than modern ones.',
+            'title' => 'New oldphones Are Getting Smarter',
+            'date' => 'September 28, 2026',
+            'author' => 'Richard',
+            'body' => 'Modern smartphones are becoming faster and more powerful every year.',
         ],
         [
-            'title' => 'Apple Unveils iPhone 67 Pro Ultra Mega Max Plus 5G WiFi Bluetooth Skibidi Toilet Edition That Reads Your Mind, Steals Your Money and Calls You Bro',
-            'date' => 'September 25, 2050',
-            'author' => 'Valera',
-            'body' => 'The new iPhone has 67 cameras, no charging port, costs approximately one kidney and a soul.',
+            'title' => 'The Oldest of Web Development',
+            'date' => 'September 25, 2026',
+            'author' => 'Daniil',
+            'body' => 'Web technologies continue to develop and make websites faster and easier to use.',
         ],
         [
-            'title' => 'Web Developers Discover Sleep',
-            'date' => 'September 2, 3000',
-            'author' => 'Danik',
-            'body' => 'A new study shows that web developers can actually sleep after fixing all CSS problems.',
+            'title' => 'New Iphone 67 pro ultra duo max',
+            'date' => 'September 25, 2077',
+            'author' => 'Valeria',
+            'body' => 'Omg',
         ],
     ];
- 
 
-    include __DIR__ . '/../../views/tech.php';
-}
+        view('tech', compact('posts'));
+    }
+    
+    public function forms() {
+        view('forms');
+    }
 
+    public function answer() {
+        dump($_GET, $_POST);
+    }
 }
