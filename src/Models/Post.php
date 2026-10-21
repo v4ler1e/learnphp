@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-
-class Post {
-    public $id;
+class Post extends Model {
+    protected static $table = 'posts';
+    
     public $title;
     public $body;
     public $created_at;

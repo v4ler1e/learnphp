@@ -5,10 +5,7 @@ namespace App;
 use PDO;
 use PDOException;
 
-
-
 class DB {
-
     private $conn;
 
     public function __construct(){
@@ -27,10 +24,10 @@ class DB {
         }
     }
 
-    public function all(string $table){
+    public function all(string $table, string $class){
         $sql = "SELECT * FROM $table";
         $result = $this->conn->query($sql);
-        $result->setFetchMode(PDO::FETCH_CLASS, \App\Models\Post::class);
+        $result->setFetchMode(PDO::FETCH_CLASS, $class);
         return $result->fetchAll();
     }
 }

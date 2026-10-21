@@ -2,23 +2,24 @@
 
 namespace App;
 
-class Route {
-    public function __construct(private string $method, private string $path, private $action)
-    {
-        
+class Route
+{
+    public function __construct(private string $method, private string $path, private $action) {
+
     }
 
-
-    public function getMethod(){
+    public function getMethod()
+    {
         return $this->method;
     }
 
-
-    public function getPath(){
+    public function getPath()
+    {
         return $this->path;
     }
 
-    public function getAction(){
+    public function getAction()
+    {
         return $this->action;
     }
 
@@ -26,8 +27,7 @@ class Route {
         Router::addRoute('GET', $path, $action);
     }
 
-    
-    public static function post(string $path, callable|array $action) {
+     public static function post(string $path, callable|array $action) {
         Router::addRoute('POST', $path, $action);
     }
 }

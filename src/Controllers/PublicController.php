@@ -3,64 +3,60 @@
 namespace App\Controllers;
 
 use App\DB;
+use App\Models\Post;
+use App\Models\User;
 
-class PublicController
-{
-    public function index()
-    {
-        $db = new DB();
-        $posts = $db->all('posts');
-        dump($posts);
-        $users = $db->all('users');
-        dump($users);
+class PublicController {
+    public function index() {
+        $posts = Post::all();
         $title = 'World';
         view('index', compact('title', 'posts'));
     }
 
-
-
-    public function us()
-    {
-        $posts = [
-        [
-            'title' => 'AI Finally Learned How to Make Coffee',
-            'date' => 'September 7, 2026',
-            'author' => 'Bublik',
-            'body' => 'Artificial intelligence can now make coffee, but it still forgets to add sugar.',
-        ],
-        [
-            'title' => 'Old Phones Are Becoming Cool Again',
-            'date' => 'September 67, 2026',
-            'author' => 'Mihhail',
-            'body' => 'People are buying old phones again because their batteries somehow last longer than modern ones.',
-        ],
-        [
-            'title' => 'Apple Unveils iPhone 67 Pro Ultra Mega Max Plus 5G WiFi Bluetooth Skibidi Toilet Edition That Reads Your Mind, Steals Your Money and Calls You Bro',
-            'date' => 'September 25, 2050',
-            'author' => 'Valera',
-            'body' => 'The new iPhone has 67 cameras, no charging port, costs approximately one kidney and a soul.',
-        ],
-        [
-            'title' => 'Web Developers Discover Sleep',
-            'date' => 'September 2, 3000',
-            'author' => 'Danik',
-            'body' => 'A new study shows that web developers can actually sleep after fixing all CSS problems.',
-        ],
-    ];
+    public function us() {
+        $title = 'U.S';
+        $posts = Post::all();
         view('us', compact('posts'));
     }
 
+    public function tech() {
+    $title = 'Technology';
 
+    $posts = [
+        [
+            'title' => 'African Intelligence Is Changing Technology',
+            'date' => 'October 67, 2026',
+            'author' => 'Misha',
+            'body' => 'African intelligence is becoming more popular and is used in many modern applications.',
+        ],
+        [
+            'title' => 'New oldphones Are Getting Smarter',
+            'date' => 'September 28, 2026',
+            'author' => 'Richard',
+            'body' => 'Modern smartphones are becoming faster and more powerful every year.',
+        ],
+        [
+            'title' => 'The Oldest of Web Development',
+            'date' => 'September 25, 2026',
+            'author' => 'Daniil',
+            'body' => 'Web technologies continue to develop and make websites faster and easier to use.',
+        ],
+        [
+            'title' => 'New Iphone 67 pro ultra duo max',
+            'date' => 'September 25, 2077',
+            'author' => 'Valeria',
+            'body' => 'Omg',
+        ],
+    ];
 
-    public function forms()
-    {
+        view('tech', compact('posts'));
+    }
+    
+    public function forms() {
         view('forms');
     }
 
-
-    
-    public function answer()
-    {
+    public function answer() {
         dump($_GET, $_POST);
     }
 }

@@ -20,5 +20,3 @@ create table users
     constraint users_pk_2
         unique (email)
 );
-
-
