@@ -21,6 +21,6 @@ class PostController
         $post->title = $_POST['title'];
         $post->body = $_POST['body'];
         $post->save();
-        header('Location: /admin/posts');
+        redirect('/admin/posts');
     }
 }
