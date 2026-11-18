@@ -28,8 +28,21 @@
                         <path d="M21 21l-5.2-5.2"></path>
                     </svg>
                 </a>
-                <a class="btn btn-sm btn-outline-secondary" href="/register">Sign up</a>
-                <a class="btn btn-sm btn-outline-secondary" href="/login">Log in</a>
+                <?php if (auth()): ?>
+                    
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b><?= auth()->name ?></b>
+                    </button>
+                        <ul class="dropdown-menu">
+
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a class="btn btn-sm btn-outline-secondary" href="/register">Sign up</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="/login">Log in</a>
+                <?php endif; ?>
             </div>
         </div>
     </header>

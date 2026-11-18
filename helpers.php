@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 function dump(...$vars)
 {
     echo '<pre>';
@@ -19,4 +21,12 @@ function view($viewName, $variables=[]){
 
 function redirect($to) {
     header("Location: $to");
+}
+
+function auth() {
+    $userID = $_SESSION['userID'] ?? false;
+    if($userID) {
+        return User::find($userID);
+    }
+    return false;
 }

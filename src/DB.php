@@ -3,7 +3,6 @@
 namespace App;
 
 use PDO;
-use PDOException;
 
 class DB
 {
@@ -16,13 +15,8 @@ class DB
         $password = "example";
         $dbname = "learnphp";
 
-        try {
-            $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
+        $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public function all(string $table, string $class)
@@ -39,6 +33,14 @@ class DB
         $result = $this->conn->query($sql);
         $result->setFetchMode(PDO::FETCH_CLASS, $class);
         return $result->fetch();
+    }
+
+    public function where(string $table, string $class, $field, $value)
+    {
+        $sql = "SELECT * FROM $table WHERE $field=$value";
+        $result = $this->conn->query($sql);
+        $result->setFetchMode(PDO::FETCH_CLASS, $class);
+        return $result->fetchAll();
     }
 
     public function insert($table, $fields)

@@ -10,12 +10,20 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|js|css)$/', $_SERVER["REQUEST_URI"])) {
 
  
 spl_autoload_register(function ($class) {
+    if (!str_starts_with($class, 'App\\')) {
+        return;
+    }
+
     $class = substr($class, 4);
     $class = str_replace('\\', '/', $class);
-    require_once __DIR__ . "/../src/$class.php";
+    $file = __DIR__ . "/../src/$class.php";
+    if (is_file($file)) {
+        require_once $file;
+    }
 });
  
 use App\Router;
+session_start();
  
 require __DIR__ . '/../helpers.php';
 require __DIR__ . '/../routes.php';
