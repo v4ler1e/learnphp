@@ -26,7 +26,7 @@ use App\Router;
 session_start();
  
 require __DIR__ . '/../helpers.php';
-require __DIR__ . '/../routes.php';
+require __DIR__ . '/../Routes.php';
 
  
 $router = new Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
