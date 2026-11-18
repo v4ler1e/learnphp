@@ -28,12 +28,12 @@
                         <path d="M21 21l-5.2-5.2"></path>
                     </svg>
                 </a>
-                <?php if (auth()): ?>
+                <?php if ($signedInUser = auth()): ?>
                     
 
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <b><?= auth()->name ?></b>
+                        <b><?= htmlspecialchars($signedInUser->name) ?></b>
                     </button>
                         <ul class="dropdown-menu">
 
@@ -53,6 +53,9 @@
             <a class="nav-item nav-link link-body-emphasis" href="#">Technology</a>
             <a class="nav-item nav-link link-body-emphasis" href="/forms">Forms</a>
             <a class="nav-item nav-link link-body-emphasis" href="/admin/posts">Posts</a>
+            <?php if ($signedInUser): ?>
+                <a class="nav-item nav-link link-body-emphasis" href="/admin/users">Users</a>
+            <?php endif; ?>
             <a class="nav-item nav-link link-body-emphasis" href="#">Business</a>
             <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a>
             <a class="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
