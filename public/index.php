@@ -5,22 +5,8 @@
 if (preg_match('/\.(?:png|jpg|jpeg|gif|js|css)$/', $_SERVER["REQUEST_URI"])) {
     return false;    // serve the requested resource as-is.
 }
- 
- 
 
- 
-spl_autoload_register(function ($class) {
-    if (!str_starts_with($class, 'App\\')) {
-        return;
-    }
-
-    $class = substr($class, 4);
-    $class = str_replace('\\', '/', $class);
-    $file = __DIR__ . "/../src/$class.php";
-    if (is_file($file)) {
-        require_once $file;
-    }
-});
+require __DIR__ . '/../vendor/autoload.php';
  
 use App\Router;
 session_start();

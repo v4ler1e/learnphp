@@ -1,0 +1,19 @@
+{
+    "name": "laidv/learnphp",
+    "type": "project",
+    "license": "WTFPL",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "v4ler1e",
+            "email": "Valeria.Motorenko@tptlive.ee"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^8.1"
+    }
+}

@@ -10,6 +10,7 @@ class PublicController {
     public function index() {
         $posts = Post::all();
         $title = 'World';
+        dump($posts);
         view('index', compact('title', 'posts'));
     }
 
