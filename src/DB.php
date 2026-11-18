@@ -37,8 +37,9 @@ class DB
 
     public function where(string $table, string $class, $field, $value)
     {
-        $sql = "SELECT * FROM $table WHERE $field=$value";
-        $result = $this->conn->query($sql);
+        $sql = "SELECT * FROM $table WHERE $field = :value";
+        $result = $this->conn->prepare($sql);
+        $result->execute(['value' => $value]);
         $result->setFetchMode(PDO::FETCH_CLASS, $class);
         return $result->fetchAll();
     }
